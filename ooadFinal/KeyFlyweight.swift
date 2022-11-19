@@ -11,22 +11,30 @@ import SwiftUI
 import UIKit
 import SpriteKit
 
+protocol Keys {
+    var dictKey: KeySpecifier { get }
+    
+    func createSprite() -> Sprite
+    //-> SKSpriteNode
+}
 
-class Key {
+class Key: Keys {
     var dictKey: KeySpecifier
-    var width: Double
-    var height: Double
-    init(color: UIColor, x: Double, y: Double, width: Double, height: Double) {
+//    var color: UIColor
+//    var x: Double
+//    var y: Double
+    init(color: UIColor, x: Double, y: Double) {
         self.dictKey = KeySpecifier(color:color, x:x, y:y)
-        self.width = width
-        self.height = height
+//        self.color = color
+//        self.x = x
+//        self.y = y
     }
     
     
     
     func createSprite() -> Sprite{
         
-        let sprite = Sprite(color: dictKey.getColor(), x: dictKey.getX(), y: dictKey.getY(), width:width, height:height)
+        let sprite = Sprite(color: dictKey.getColor, x: dictKey.getX, y: dictKey.getY)
         return sprite
         
         
@@ -44,21 +52,29 @@ struct KeySpecifier : Hashable {
         self.y = y
     }
     
-    func getColor() -> UIColor {
+    var getColor: UIColor {
         return color
     }
     
-    func getX() -> Double {
+    var getX: Double {
         return x
     }
     
-    func getY() -> Double {
+    var getY: Double {
         return y
     }
+
+//    var hashValue: Int {
+//        return hash(into:description)
+//    }
+
+//    var description: String {
+//        return "\(col)(\row)"
+//    }
 }
 
 class KeyFlyweight {
-    var keys: [KeySpecifier: Key] = [KeySpecifier: Key]()
+    var keys: [KeySpecifier: Keys] = [KeySpecifier: Keys]()
     
     func returnDictKey(color: UIColor, x: Double, y: Double) -> KeySpecifier {
         if let key = keys[KeySpecifier(color: color, x: x, y: y)] {
@@ -68,45 +84,45 @@ class KeyFlyweight {
             return dictKey
         }
     }
-    func getKey(dictKey: KeySpecifier, width: Double, height: Double) -> Key {
+    func getKey(dictKey: KeySpecifier) -> Keys {
         if let key = keys[dictKey] {
             return key
         } else {
-            let key = Key(color: dictKey.getColor(), x: dictKey.getX(), y: dictKey.getY(), width:width, height:height)
+            let key = Key(color: dictKey.getColor, x: dictKey.getX, y: dictKey.getY)
             keys[dictKey] = key
             return key
         }
     }
 }
 
-func uiColorAsString(color: UIColor) -> String {
-    
-    if color == .black{
-        return "black"
-    }
-    return "white"
-    
-}
-
-
 class Sprite {
     var keySprite: SKSpriteNode
     
-    init(color: UIColor, x: Double, y: Double, width: Double, height: Double){
-        let key = SKSpriteNode(color: color, size: CGSize(width: width, height: height))
-        key.name = uiColorAsString(color: color)
+    init(color: UIColor, x: Double, y: Double){
+        let key = SKSpriteNode(color: color, size: CGSize(width: 75, height: 50))
+        key.name = "white"
         key.position = CGPoint(x: x, y: y)
         self.keySprite = key
     }
     
     func returnSpriteNode() -> SKSpriteNode{
+        return self.keySprite
+    }
+    
+    func moveSprite(){
         let key = self.keySprite
-        key.physicsBody = SKPhysicsBody( rectangleOf: CGSize(width:key.size.width, height: key.size.height))
+        
+        //tiles[whiteCount].size = CGSize(width: 375, height: 100)
+//        tiles[whiteCount].position = CGPoint(x:x,y:617)
+    
+//        self.addChild(tiles[whiteCount])
+        key.physicsBody = SKPhysicsBody( rectangleOf: CGSize(width:75, height: 50))
 
         key.physicsBody?.affectedByGravity = false
         key.physicsBody?.friction = CGFloat(0)
         key.physicsBody?.linearDamping = CGFloat(0)
         key.physicsBody?.velocity = CGVector(dx:0,dy:-300)
-        return key
+        print(key)
+        //return key
     }
 }
