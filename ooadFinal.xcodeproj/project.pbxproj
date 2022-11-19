@@ -14,6 +14,10 @@
 		EF95576D292449E700F90F33 /* gamePlayingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF95576C292449E700F90F33 /* gamePlayingScene.swift */; };
 		EF95576F29244A3000F90F33 /* gamePlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF95576E29244A3000F90F33 /* gamePlayingViewController.swift */; };
 		EF95577129282F0400F90F33 /* KeyFlyweight.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF95577029282F0400F90F33 /* KeyFlyweight.swift */; };
+		EF9557732928757B00F90F33 /* KeysInLevelIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9557722928757B00F90F33 /* KeysInLevelIterator.swift */; };
+		EF9557752928827000F90F33 /* KeyCollumns.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9557742928827000F90F33 /* KeyCollumns.swift */; };
+		EF95577929288B9000F90F33 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF95577829288B9000F90F33 /* Levels.swift */; };
+		EF95577F292890AD00F90F33 /* GenerateRandomValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF95577E292890AD00F90F33 /* GenerateRandomValues.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +29,10 @@
 		EF95576C292449E700F90F33 /* gamePlayingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gamePlayingScene.swift; sourceTree = "<group>"; };
 		EF95576E29244A3000F90F33 /* gamePlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gamePlayingViewController.swift; sourceTree = "<group>"; };
 		EF95577029282F0400F90F33 /* KeyFlyweight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyFlyweight.swift; sourceTree = "<group>"; };
+		EF9557722928757B00F90F33 /* KeysInLevelIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysInLevelIterator.swift; sourceTree = "<group>"; };
+		EF9557742928827000F90F33 /* KeyCollumns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCollumns.swift; sourceTree = "<group>"; };
+		EF95577829288B9000F90F33 /* Levels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
+		EF95577E292890AD00F90F33 /* GenerateRandomValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateRandomValues.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +72,10 @@
 				EF95576C292449E700F90F33 /* gamePlayingScene.swift */,
 				EF95576E29244A3000F90F33 /* gamePlayingViewController.swift */,
 				EF95577029282F0400F90F33 /* KeyFlyweight.swift */,
+				EF9557722928757B00F90F33 /* KeysInLevelIterator.swift */,
+				EF9557742928827000F90F33 /* KeyCollumns.swift */,
+				EF95577829288B9000F90F33 /* Levels.swift */,
+				EF95577E292890AD00F90F33 /* GenerateRandomValues.swift */,
 			);
 			path = ooadFinal;
 			sourceTree = "<group>";
@@ -147,7 +159,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF9557612924430800F90F33 /* ContentView.swift in Sources */,
+				EF9557752928827000F90F33 /* KeyCollumns.swift in Sources */,
+				EF95577929288B9000F90F33 /* Levels.swift in Sources */,
+				EF9557732928757B00F90F33 /* KeysInLevelIterator.swift in Sources */,
 				EF95577129282F0400F90F33 /* KeyFlyweight.swift in Sources */,
+				EF95577F292890AD00F90F33 /* GenerateRandomValues.swift in Sources */,
 				EF95576D292449E700F90F33 /* gamePlayingScene.swift in Sources */,
 				EF95575F2924430800F90F33 /* ooadFinalApp.swift in Sources */,
 				EF95576F29244A3000F90F33 /* gamePlayingViewController.swift in Sources */,

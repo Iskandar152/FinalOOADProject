@@ -10,9 +10,17 @@ import SpriteKit
 import GameplayKit
 
 struct ContentView: View {
+    //@State var window = UIApplication.shared.windows[0]
+    //@State var safeFrame = UIApplication.shared.windows[0].safeAreaLayoutGuide.layoutFrame
+    
+//    self.screenWidth = safeFrame.width
+//    self.screenHeight = safeFrame.height
+    
     var scene: SKScene {
             let scene = gamePlayingScene()
-            scene.size = CGSize(width: 1000, height: 600)
+            let safeFrame = UIApplication.shared.windows[0].safeAreaLayoutGuide.layoutFrame
+            let padding = UIApplication.shared.windows[0].safeAreaInsets
+            scene.size = CGSize(width: safeFrame.width, height: safeFrame.height-(padding.top + padding.bottom))
             scene.scaleMode = .fill
             scene.backgroundColor = SKColor.lightGray
             return scene
@@ -26,7 +34,7 @@ struct ContentView: View {
                 Text("Go to Game Scene")
             }.fullScreenCover(isPresented: $show) {
                 SpriteView(scene: scene)
-                    .frame(width: 1000, height: 600)
+                    .frame(width: UIApplication.shared.windows[0].safeAreaLayoutGuide.layoutFrame.width, height: UIApplication.shared.windows[0].safeAreaLayoutGuide.layoutFrame.height-(UIApplication.shared.windows[0].safeAreaInsets.top + UIApplication.shared.windows[0].safeAreaInsets.bottom))
                     .ignoresSafeArea()
             }
         }
