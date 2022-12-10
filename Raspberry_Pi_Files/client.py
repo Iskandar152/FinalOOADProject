@@ -1,6 +1,10 @@
 import socket
 import sys
-
+'''
+This is a test program to 
+make sure that client connections are possible. 
+Used this throughout development
+'''
 class Client:
     def __init__(self,host,port):
         print("Client!")
