@@ -15,21 +15,19 @@ class gamePlayingViewController: UIViewController {
 
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
-                
+
         
-        if let view = self.view as! SKView? {
-            if let scene = SKScene(fileNamed: "gamePlayingScene") {
-                scene.scaleMode = .aspectFill
-                
-                view.presentScene(scene)
+        var body: some View {
+            Button(action: {
+                ContentView().scene.sceneDidLoad()
+            }) {
+                Text("Go to next Game Scene")
             }
-            
-            view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
         }
+        
+        
     }
     
 

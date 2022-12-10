@@ -9,31 +9,39 @@ import SwiftUI
 import UIKit
 import SpriteKit
 import GameplayKit
+import NIO
+let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
+
+
 
 
 class gamePlayingScene: SKScene {
     
-    private var spinnyNode : SKShapeNode?
     var score = 0
-    let test:gamePlayingViewController = gamePlayingViewController()
     var lastFrameTime : Double = 0.0
-    let iterator = KeysInLevelIterator(dataSource: Levels().listOfLevels[3]!).makeIterator()
-    
     
     
     
     override func update(_ currentTime: TimeInterval) {
         
+        let levelInt = self.userData?.value(forKey: "levelInt") as! Int
+
+        
         
         let deltaTime = currentTime - lastFrameTime
         var timeNeeded = 1.0
+        let iterator = self.userData?.value(forKey: "iter") as! LevelIterator
         
         
         if(deltaTime > timeNeeded){
             if let next = iterator.next() {
-                self.addChild(next.0)
+                self.addChild(next.0.returnSpriteNode())
                 timeNeeded = next.1
                 lastFrameTime = currentTime
+            } else if (deltaTime > timeNeeded + 5){
+                lastFrameTime = currentTime
+                print("done")
+
             }
         }
         
@@ -46,16 +54,6 @@ class gamePlayingScene: SKScene {
     {
         score+=points;
     }
-    
-    
-    
-//    func touchDown(atPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.green
-//            self.addChild(n)
-//        }
-//    }
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -63,22 +61,37 @@ class gamePlayingScene: SKScene {
         let touch:UITouch = touches.first!;
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
+        let safeToTapUpper = (2*KeyCollumns().screenHeight)/5
+        let safeToTapLower = (KeyCollumns().screenHeight)/5
         
-        if touchedNode.name != nil
+        
+        if touchedNode.name != nil, positionInScene.y < safeToTapUpper, positionInScene.y > safeToTapLower
         {
+            let xpoint = Int(touchedNode.position.x)
+            let positions = KeyCollumns().screenWidth
+            let bigString = String(xpoint) + ":" + String(positions)
+            print(bigString)
+            
+            do{
+                let client = try ClientBootstrap(group: group)
+                    .connect(host: "10.202.147.104", port: 9999)
+                    .wait()
+
+
+
+
+                try client.writeAndFlush(ByteBuffer(string: bigString)).flatMap {
+                    client.close()
+                }.wait()
+            } catch{
+            }
+            
+            
             print("touch")
-            updateScore(points: 1);
+            updateScore(points: 1)
         }
         
-        
-        //for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
     
-    
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-//    }
-//
-
     
 }

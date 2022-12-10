@@ -16,10 +16,13 @@ class Key {
     var dictKey: KeySpecifier
     var width: Double
     var height: Double
+    var touched: Bool
+    
     init(color: UIColor, x: Double, y: Double, width: Double, height: Double) {
         self.dictKey = KeySpecifier(color:color, x:x, y:y)
         self.width = width
         self.height = height
+        self.touched = false
     }
     
     
@@ -89,18 +92,25 @@ func uiColorAsString(color: UIColor) -> String {
 }
 
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 class Sprite {
-    var keySprite: SKSpriteNode
+    var keySprite: customSpriteNode
+    
+    
+    
     
     init(color: UIColor, x: Double, y: Double, width: Double, height: Double){
         let key = SKSpriteNode(color: color, size: CGSize(width: width, height: height))
-        key.name = uiColorAsString(color: color)
+        key.name = "false"
         key.position = CGPoint(x: x, y: y)
-        self.keySprite = key
+        let keySprite = customSpriteNode(touched: false, key: key)
+        self.keySprite = keySprite
     }
     
     func returnSpriteNode() -> SKSpriteNode{
-        let key = self.keySprite
+        let key = self.keySprite.key
         key.physicsBody = SKPhysicsBody( rectangleOf: CGSize(width:key.size.width, height: key.size.height))
 
         key.physicsBody?.affectedByGravity = false

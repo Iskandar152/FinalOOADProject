@@ -10,15 +10,15 @@ import SwiftUI
 import SpriteKit
 
 protocol LevelIterator {
-    func next() -> (SKSpriteNode, Double)?
+    func next() -> (Sprite, Double)?
 }
 
 class ArrayLevelIterator: LevelIterator {
 
-    private let values: [(SKSpriteNode, Double)]
+    private let values: [(Sprite, Double)]
     private var index: Int?
 
-    init(_ values: [(SKSpriteNode, Double)]) {
+    init(_ values: [(Sprite, Double)]) {
         self.values = values
     }
 
@@ -32,7 +32,7 @@ class ArrayLevelIterator: LevelIterator {
         return nil
     }
 
-    func next() -> (SKSpriteNode, Double)? {
+    func next() -> (Sprite, Double)? {
         if let indexNew = self.nextIndex(index: self.index) {
             self.index = indexNew
             return self.values[indexNew]
@@ -42,15 +42,19 @@ class ArrayLevelIterator: LevelIterator {
 }
 
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
 protocol Iterable {
     func makeIterator() -> LevelIterator
 }
 
 class KeysInLevelIterator: Iterable {
 
-    private var dataSource: [(SKSpriteNode, Double)]
+    private var dataSource: [(Sprite, Double)]
 
-    init(dataSource: [(SKSpriteNode, Double)]) {
+    init(dataSource: [(Sprite, Double)]) {
         self.dataSource = dataSource
     }
 

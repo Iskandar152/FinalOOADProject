@@ -11,9 +11,9 @@ import SpriteKit
 
 
 
-func makeListOfKeys(num: Int, optionsX:KeyCollumns, factory: KeyFlyweight) -> [(SKSpriteNode, Double)]{
+func makeListOfKeys(num: Int, optionsX:KeyCollumns, factory: KeyFlyweight) -> [(Sprite, Double)]{
     
-    var listOfKeys:[(SKSpriteNode, Double)] = []
+    var listOfKeys:[(Sprite, Double)] = []
     let numOfTiles = (num*5) + 10
     var i = 0
     
@@ -28,7 +28,7 @@ func makeListOfKeys(num: Int, optionsX:KeyCollumns, factory: KeyFlyweight) -> [(
         let dictKey = factory.returnDictKey(color: randomColor, x: randomX , y: startingHeight)
         let keySprite = factory.getKey(dictKey: dictKey, width: width, height: randomHeight).createSprite()
         
-        listOfKeys.append((keySprite.returnSpriteNode(), randomTimeGap))
+        listOfKeys.append((keySprite, randomTimeGap))
         i = i + 1
         
     }
@@ -37,10 +37,14 @@ func makeListOfKeys(num: Int, optionsX:KeyCollumns, factory: KeyFlyweight) -> [(
     
 }
 
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 class Levels{
     let factory:KeyFlyweight = KeyFlyweight()
     let optionsX = KeyCollumns()
-    var listOfLevels: [Int: [(SKSpriteNode, Double)]] = [Int: [(SKSpriteNode, Double)]]()
+    var listOfLevels: [Int: [(Sprite, Double)]] = [Int: [(Sprite, Double)]]()
     
     
     

@@ -12,7 +12,7 @@ class KeyCollumns{
     let screenWidth: Double
     let screenHeight: Double
     var keyWidth: Double = 0.0
-    var listOfCollumns: [Double] = []
+    var listOfCollumns: [Int] = []
     
     
     func makeListOfCollumns(){
@@ -22,7 +22,7 @@ class KeyCollumns{
         var currX = (tileLength/2) + 10
         
         while (currX < screenWidth - (tileLength/2) + 10){
-            listOfCollumns.append(currX)
+            listOfCollumns.append(Int(currX))
             currX = currX + tileLength
         }
         

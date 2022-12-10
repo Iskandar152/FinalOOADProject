@@ -10,17 +10,12 @@ import SwiftUI
 
 
 
-
-//FACTORY
-
-///////////////////////???????????????
-
-
 protocol GenerateRandomValues {
     var value: AnyHashable { get }
 }
 
 
+//Factory
 
 
 
