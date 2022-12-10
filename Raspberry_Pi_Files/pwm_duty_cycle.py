@@ -1,6 +1,10 @@
 import RPI.GPIO as GPIO
 from time import sleep
-
+'''
+This is not being used, 
+PWM was too difficult to implement reliably on a raspberry pi
+Arduinos are better for this 
+'''
 led_pin = 12
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
